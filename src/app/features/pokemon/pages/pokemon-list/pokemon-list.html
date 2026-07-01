@@ -1,5 +1,23 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-  @for (pokemon of store.pokemonList(); track pokemon.name) {
-    <app-pokemon-card [pokemon]="pokemon" />
-  }
-</div>
+@if (store.loading()) {
+  <app-spinner />
+}
+
+@if (store.error()) {
+  <p class="text-center text-lg font-semibold text-red-600">
+    {{ store.error() }}
+  </p>
+}
+
+@if (!store.loading() && !store.error()) {
+  <section class="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    @for (pokemon of store.pokemonList(); track pokemon.id) {
+      <app-pokemon-card [pokemon]="pokemon" />
+    }
+  </section>
+}
+
+<app-pagination
+  [currentPage]="store.currentPage()"
+  (pageNext)="store.nextPage()"
+  (pagePrevious)="store.previousPage()"
+/>

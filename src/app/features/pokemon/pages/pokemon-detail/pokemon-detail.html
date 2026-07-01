@@ -1,1 +1,47 @@
-<p>pokemon-detail works!</p>
+<a
+  class="inline-flex items-center rounded bg-purple-600 px-4 py-2 font-semibold text-white shadow transition hover:bg-purple-700"
+  routerLink="/pokemon"
+>
+  Back
+</a>
+
+@if (store.selectedPokemon(); as pokemon) {
+  <section
+    class="mx-auto grid max-w-6xl items-center gap-10 bg-gray-100 py-10 lg:grid-cols-[1fr_1.2fr]"
+  >
+    <img
+      class="mx-auto h-80 w-80 object-contain sm:h-96 sm:w-96"
+      [src]="imageUrl()"
+      [alt]="pokemon.name"
+    />
+
+    <div class="text-xl font-semibold leading-loose text-gray-950">
+      <p>Id: {{ pokemon.id }}</p>
+      <p>Title: {{ pokemon.name }}</p>
+      <p>Height: {{ pokemon.height }}</p>
+      <p>Weight: {{ pokemon.weight }}</p>
+
+      <p class="mt-4">Some Stats:</p>
+
+      <div class="mt-3 flex flex-wrap gap-4">
+        @for (stat of pokemon.stats; track stat.stat.name) {
+          <span class="rounded-full bg-green-500 px-4 py-1 text-base font-bold text-white">
+            {{ stat.stat.name }} {{ stat.base_stat }}
+          </span>
+        }
+      </div>
+    </div>
+  </section>
+}
+@if (store.loading()) {
+  <div class="flex min-h-80 items-center justify-center">
+    <div
+      class="h-14 w-14 animate-spin rounded-full border-4 border-gray-300 border-t-purple-600"
+    ></div>
+  </div>
+}
+@if (store.error()) {
+  <p class="text-center text-lg font-semibold text-red-600">
+    {{ store.error() }}
+  </p>
+}

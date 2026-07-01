@@ -1,5 +1,42 @@
-<div class="bg-white rounded-2xl p-6 shadow-lg">
-  <h2 class="text-xl font-bold capitalize">
+<article class="relative overflow-hidden rounded-lg bg-white px-7 pb-7 pt-8 text-center shadow-md">
+  <div class="absolute left-0 top-0 h-48 w-full rounded-b-[50%] bg-yellow-300"></div>
+
+  <span
+    class="absolute right-7 top-7 rounded-full bg-white px-7 py-3 text-lg font-bold text-gray-950 shadow-sm"
+  >
+    ID: {{ pokemon().id }}
+  </span>
+
+  <img
+    class="relative z-10 mx-auto mt-16 h-52 w-52 object-contain"
+    [src]="imageUrl()"
+    [alt]="pokemon().name"
+  />
+
+  <h2 class="mt-6 text-xl font-extrabold uppercase text-gray-950">
     {{ pokemon().name }}
   </h2>
-</div>
+
+  <dl class="mt-14 grid grid-cols-3 gap-4 text-gray-950">
+    <div>
+      <dt class="text-2xl font-extrabold">{{ pokemon().height }}</dt>
+      <dd class="text-lg text-gray-700">Height</dd>
+    </div>
+    <div>
+      <dt class="text-2xl font-extrabold">{{ pokemon().base_experience }}</dt>
+      <dd class="text-lg text-gray-700">Experience</dd>
+    </div>
+    <div>
+      <dt class="text-2xl font-extrabold">{{ pokemon().order }}</dt>
+      <dd class="text-lg text-gray-700">Order</dd>
+    </div>
+  </dl>
+
+  <button
+    class="mt-9 rounded-xl bg-green-500 px-7 py-3 text-base font-bold text-white transition hover:bg-green-600"
+    type="button"
+    (click)="openDetail()"
+  >
+    Show more
+  </button>
+</article>

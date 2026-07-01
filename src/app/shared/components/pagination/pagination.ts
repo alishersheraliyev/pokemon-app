@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: './pagination.html',
   styleUrl: './pagination.css',
 })
-export class Pagination {}
+export class Pagination {
+  currentPage = input.required<number>();
+  pageNext = output<void>();
+  pagePrevious = output<void>();
+}

@@ -1,1 +1,17 @@
-<p>pagination works!</p>
+<div class="flex justify-center gap-4 mt-8">
+  <button
+    class="rounded bg-gray-300 px-4 py-2 font-semibold text-gray-900 disabled:cursor-not-allowed disabled:opacity-50"
+    [disabled]="currentPage() === 1"
+    (click)="pagePrevious.emit()"
+  >
+    Previous
+  </button>
+
+  <span class="flex min-w-10 items-center justify-center rounded bg-white px-4 py-2 font-bold">
+    {{ currentPage() }}
+  </span>
+
+  <button class="rounded bg-blue-600 px-4 py-2 font-semibold text-white" (click)="pageNext.emit()">
+    Next
+  </button>
+</div>
